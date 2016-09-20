@@ -328,8 +328,9 @@ class Api
     {
         /** @var ArticleFbApi $response */
         $response = $this->call(new Request('article.get', array('article_id' => $id)), 'DVelopment\FastBill\Model\ArticleFbApi');
+        $articles = $response->getResponse()->getArticles();
 
-        return reset($response->getResponse()->getArticles());
+        return reset($articles);
     }
 
     /**
