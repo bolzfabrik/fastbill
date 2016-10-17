@@ -87,7 +87,7 @@ class Subscription
      * @JMS\SerializedName("ARTICLE_NUMBER")
      */
     private $articleNumber;
-    
+
     /**
      * @var string
      *
@@ -127,6 +127,22 @@ class Subscription
      * @JMS\SerializedName("EXPIRATION_DATE")
      */
     private $expirationDate;
+
+    /**
+     * @var array
+     *
+     * @JMS\Type("array")
+     * @JMS\SerializedName("FEATURES")
+     */
+    private $features;
+
+    /**
+     * @var Plan
+     *
+     * @JMS\Type("DVelopment\FastBill\Model\Plan")
+     * @JMS\SerializedName("PLAN")
+     */
+    private $plan;
 
     /**
      * @param int $subscriptionId
@@ -223,7 +239,7 @@ class Subscription
     {
         return $this->nextEvent;
     }
-    
+
     /**
      * @param string $cancelationDate
      *
@@ -318,7 +334,7 @@ class Subscription
     {
         return $this->quantity;
     }
-    
+
     /**
      * @param string $subscriptionExtUid
      *
@@ -337,7 +353,7 @@ class Subscription
     {
         return $this->subscriptionExtUid;
     }
-    
+
     /**
      * @param string $lastEvent
      *
@@ -393,5 +409,43 @@ class Subscription
     public function getExpirationDate()
     {
         return $this->expirationDate;
+    }
+
+    /**
+     * @param Feature[] $features
+     *
+     * @return Subscription
+     */
+    public function setFeatures($features)
+    {
+        $this->features= $features;
+        return $this;
+    }
+
+    /**
+     * @return Feature[]
+     */
+    public function getFeatures()
+    {
+        return $this->features;
+    }
+
+    /**
+     * @param Plan $plan
+     *
+     * @return Subscription
+     */
+    public function setPlan($plan)
+    {
+        $this->plan = $plan;
+        return $this;
+    }
+
+    /**
+     * @return Plan
+     */
+    public function getPlan()
+    {
+        return $this->plan;
     }
 }

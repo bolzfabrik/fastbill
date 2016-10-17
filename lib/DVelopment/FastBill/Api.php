@@ -18,6 +18,7 @@ use DVelopment\FastBill\Model\Request\CustomerRequest;
 use DVelopment\FastBill\Model\Request\DeleteRequest;
 use DVelopment\FastBill\Model\Request\ProjectRequest;
 use DVelopment\FastBill\Model\Request\Request;
+use DVelopment\FastBill\Model\Request\SubscriptionRequest;
 use DVelopment\FastBill\Model\Request\SubscriptionSecureLinkRequest;
 use DVelopment\FastBill\Model\Request\TimeRequest;
 use DVelopment\FastBill\Model\Task;
@@ -277,8 +278,9 @@ class Api
     {
         /** @var TimeFbApi $response */
         $response = $this->call(new Request('time.get', array('time_id' => $id)), 'DVelopment\FastBill\Model\TimeFbApi');
+        $times = $response->getResponse()->getTimes();
 
-        return reset($response->getResponse()->getTimes());
+        return reset($times);
     }
 
     /**
