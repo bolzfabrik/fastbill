@@ -382,6 +382,16 @@ class Api
     /* ---------------------------- NEW ---------------------------- */
 
     /**
+     * @param Subscription $subscription
+     *
+     * @return boolean
+     */
+    public function createSubscription(Subscription $subscription)
+    {
+        return ($this->call(new SubscriptionRequest('subscription.create', array(), $subscription))->getResponse()->status == "success");
+    }
+
+    /**
      * @param int $subscriptionId
      *
      * @return \DVelopment\FastBill\Model\Subscription
