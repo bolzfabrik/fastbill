@@ -56,7 +56,7 @@ class Feature
      */
     public function getCode()
     {
-        return $this->subscriptionId;
+        return $this->code;
     }
 
     /**
