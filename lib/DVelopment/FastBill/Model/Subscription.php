@@ -81,9 +81,9 @@ class Subscription
     private $hash;
 
     /**
-     * @var int
+     * @var string
      *
-     * @JMS\Type("integer")
+     * @JMS\Type("string")
      * @JMS\SerializedName("ARTICLE_NUMBER")
      */
     private $articleNumber;
