@@ -35,7 +35,7 @@ class Plan
     /**
      * @var array
      *
-     * @JMS\Type("array")
+     * @JMS\Type("ArrayCollection<DVelopment\FastBill\Model\Feature>")
      * @JMS\SerializedName("FEATURES")
      */
     private $features;
