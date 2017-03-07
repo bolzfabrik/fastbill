@@ -462,6 +462,33 @@ class Api
     }
 
     /**
+     * @param string $customerId
+     *
+     * @return \DVelopment\FastBill\Model\Subscription
+     */
+    public function getSubscriptionsByCustomerId($customerId)
+    {
+        /** @var SubscriptionFbApi $response */
+        $response = $this->call(new Request('subscription.get', array('customer_id' => $customerId)), 'DVelopment\FastBill\Model\SubscriptionFbApi');
+        $subscriptions = $response->getResponse()->getSubscriptions();
+        return $subscriptions;
+    }
+
+    public function getActiveSubscriptionByCustomerId($customerId) {
+        $activeSubscription = null;
+        $subscriptions = $this->getSubscriptionsByCustomerId($customerId);
+        if (!empty(array_filter($subscriptions))) {
+            foreach ($subscriptions as $subscription) {
+                $expirationDate = $subscription->getExpirationDate();
+                if ($expirationDate > new \DateTime()) {
+                    $activeSubscription = $subscription;
+                }
+            }
+        }
+        return $activeSubscription;
+    }
+
+    /**
      * @param string $customerExtUid
      *
      * @return \DVelopment\FastBill\Model\Subscription
