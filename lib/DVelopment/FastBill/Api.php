@@ -452,20 +452,6 @@ class Api
      *
      * @return \DVelopment\FastBill\Model\Subscription
      */
-    public function getSubscriptionByCustomerId($customerId)
-    {
-        /** @var SubscriptionFbApi $response */
-        $response = $this->call(new Request('subscription.get', array('customer_id' => $customerId)), 'DVelopment\FastBill\Model\SubscriptionFbApi');
-        $subscriptions = $response->getResponse()->getSubscriptions();
-
-        return reset($subscriptions);
-    }
-
-    /**
-     * @param string $customerId
-     *
-     * @return \DVelopment\FastBill\Model\Subscription
-     */
     public function getSubscriptionsByCustomerId($customerId)
     {
         /** @var SubscriptionFbApi $response */
@@ -488,12 +474,34 @@ class Api
         return $activeSubscription;
     }
 
+    public function getSubscriptionsByCustomerExtUid($customerExtUid)
+    {
+        /** @var SubscriptionFbApi $response */
+        $response = $this->call(new Request('subscription.get', array('customer_ext_uid' => $customerExtUid)), 'DVelopment\FastBill\Model\SubscriptionFbApi');
+        $subscriptions = $response->getResponse()->getSubscriptions();
+        return $subscriptions;
+    }
+
+    public function getActiveSubscriptionByCustomerExtUid($customerExtUid) {
+        $activeSubscription = null;
+        $subscriptions = $this->getSubscriptionsByCustomerExtUid($customerExtUid);
+        if (!empty(array_filter($subscriptions))) {
+            foreach ($subscriptions as $subscription) {
+                $expirationDate = $subscription->getExpirationDate();
+                if ($expirationDate > new \DateTime()) {
+                    $activeSubscription = $subscription;
+                }
+            }
+        }
+        return $activeSubscription;
+    }
+
     /**
      * @param string $customerExtUid
      *
      * @return \DVelopment\FastBill\Model\Subscription
      */
-    public function getSubscriptionByCustomerExtUid($customerExtUid)
+    public function getActiveSubscriptionByCustomerExtUid($customerExtUid)
     {
         /** @var SubscriptionFbApi $response */
         $response = $this->call(new Request('subscription.get', array('customer_ext_uid' => $customerExtUid)), 'DVelopment\FastBill\Model\SubscriptionFbApi');
