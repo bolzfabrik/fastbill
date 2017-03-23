@@ -501,7 +501,7 @@ class Api
      *
      * @return \DVelopment\FastBill\Model\Subscription
      */
-    public function getActiveSubscriptionByCustomerExtUid($customerExtUid)
+    public function getSubscriptionByCustomerExtUid($customerExtUid)
     {
         /** @var SubscriptionFbApi $response */
         $response = $this->call(new Request('subscription.get', array('customer_ext_uid' => $customerExtUid)), 'DVelopment\FastBill\Model\SubscriptionFbApi');
