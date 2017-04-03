@@ -46,7 +46,7 @@ class Customer
      * @JMS\Type("string")
      * @JMS\SerializedName("CUSTOMER_TYPE")
      */
-    private $customerType;
+    private $customerType = 'business';
 
     /**
      * @var string
@@ -182,7 +182,7 @@ class Customer
      * @JMS\Type("string")
      * @JMS\SerializedName("CURRENCY_CODE")
      */
-    private $currencyCode;
+    private $currencyCode = 'EUR';
 
     /**
      * @var string
@@ -198,7 +198,7 @@ class Customer
      * @JMS\Type("integer")
      * @JMS\SerializedName("DAYS_FOR_PAYMENT")
      */
-    private $daysForPayment;
+    private $daysForPayment = 14;
 
     /**
      * @var int
@@ -206,15 +206,7 @@ class Customer
      * @JMS\Type("integer")
      * @JMS\SerializedName("PAYMENT_TYPE")
      */
-    private $paymentType;
-
-    /**
-     * @var string
-     *
-     * @JMS\Type("string")
-     * @JMS\SerializedName("PAYMENT_METHOD")
-     */
-    private $paymentMethod;
+    private $paymentType = 1;
 
     /**
      * @var bool
@@ -243,25 +235,17 @@ class Customer
      * @var string
      *
      * @JMS\Type("string")
+     * @JMS\SerializedName("AFFILIATE")
+     */
+    private $affiliate;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
      * @JMS\SerializedName("BANK_ACCOUNT_NUMBER")
      */
     private $bankAccountNumber;
-
-    /**
-     * @var string
-     *
-     * @JMS\Type("string")
-     * @JMS\SerializedName("BANK_IBAN")
-     */
-    private $bankIban;
-
-    /**
-     * @var string
-     *
-     * @JMS\Type("string")
-     * @JMS\SerializedName("BANK_BIC")
-     */
-    private $bankBic;
 
     /**
      * @var string
@@ -288,11 +272,14 @@ class Customer
     private $changedataUrl;
 
     /**
-     * @return string
+     * @param string $affiliate
+     *
+     * @return Customer
      */
-    public function getAccountReceivable()
+    public function setAffiliate($affiliate)
     {
-        return $this->accountReceivable;
+        $this->affiliate = $affiliate;
+        return $this;
     }
 
     /**
@@ -309,9 +296,9 @@ class Customer
     /**
      * @return string
      */
-    public function getAddress()
+    public function getAccountReceivable()
     {
-        return $this->address;
+        return $this->accountReceivable;
     }
 
     /**
@@ -328,9 +315,9 @@ class Customer
     /**
      * @return string
      */
-    public function getAddress2()
+    public function getAddress()
     {
-        return $this->address2;
+        return $this->address;
     }
 
     /**
@@ -347,9 +334,9 @@ class Customer
     /**
      * @return string
      */
-    public function getBankAccountNumber()
+    public function getAddress2()
     {
-        return $this->bankAccountNumber;
+        return $this->address2;
     }
 
     /**
@@ -366,47 +353,9 @@ class Customer
     /**
      * @return string
      */
-    public function getBankIban()
+    public function getBankAccountNumber()
     {
-        return $this->bankIban;
-    }
-
-    /**
-     * @param string $bankIban
-     *
-     * @return Customer
-     */
-    public function setBankIban($bankIban)
-    {
-        $this->bankIban = $bankIban;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBankBic()
-    {
-        return $this->bankBic;
-    }
-
-    /**
-     * @param string $bankBic
-     *
-     * @return Customer
-     */
-    public function setBankBic($bankBic)
-    {
-        $this->bankBic = $bankBic;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBankAccountOwner()
-    {
-        return $this->bankAccountOwner;
+        return $this->bankAccountNumber;
     }
 
     /**
@@ -421,11 +370,11 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getBankCode()
+    public function getBankAccountOwner()
     {
-        return $this->bankCode;
+        return $this->bankAccountOwner;
     }
 
     /**
@@ -442,9 +391,9 @@ class Customer
     /**
      * @return string
      */
-    public function getBankName()
+    public function getBankCode()
     {
-        return $this->bankName;
+        return $this->bankCode;
     }
 
     /**
@@ -461,9 +410,9 @@ class Customer
     /**
      * @return string
      */
-    public function getCity()
+    public function getBankName()
     {
-        return $this->city;
+        return $this->bankName;
     }
 
     /**
@@ -480,9 +429,9 @@ class Customer
     /**
      * @return string
      */
-    public function getCountryCode()
+    public function getCity()
     {
-        return $this->countryCode;
+        return $this->city;
     }
 
     /**
@@ -499,9 +448,9 @@ class Customer
     /**
      * @return string
      */
-    public function getCurrencyCode()
+    public function getCountryCode()
     {
-        return $this->currencyCode;
+        return $this->countryCode;
     }
 
     /**
@@ -518,9 +467,9 @@ class Customer
     /**
      * @return string
      */
-    public function getCustomerExtUid()
+    public function getCurrencyCode()
     {
-        return $this->customerExtUid;
+        return $this->currencyCode;
     }
 
     /**
@@ -535,11 +484,11 @@ class Customer
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getCustomerNumber()
+    public function getCustomerExtUid()
     {
-        return $this->customerNumber;
+        return $this->customerExtUid;
     }
 
     /**
@@ -554,11 +503,11 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getCustomerType()
+    public function getCustomerNumber()
     {
-        return $this->customerType;
+        return $this->customerNumber;
     }
 
     /**
@@ -573,11 +522,11 @@ class Customer
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getDaysForPayment()
+    public function getCustomerType()
     {
-        return $this->daysForPayment;
+        return $this->customerType;
     }
 
     /**
@@ -592,11 +541,11 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getEmail()
+    public function getDaysForPayment()
     {
-        return $this->email;
+        return $this->daysForPayment;
     }
 
     /**
@@ -613,9 +562,9 @@ class Customer
     /**
      * @return string
      */
-    public function getFax()
+    public function getEmail()
     {
-        return $this->fax;
+        return $this->email;
     }
 
     /**
@@ -632,9 +581,9 @@ class Customer
     /**
      * @return string
      */
-    public function getFirstName()
+    public function getFax()
     {
-        return $this->firstName;
+        return $this->fax;
     }
 
     /**
@@ -651,9 +600,9 @@ class Customer
     /**
      * @return string
      */
-    public function getLastName()
+    public function getFirstName()
     {
-        return $this->lastName;
+        return $this->firstName;
     }
 
     /**
@@ -670,9 +619,9 @@ class Customer
     /**
      * @return string
      */
-    public function getMobile()
+    public function getLastName()
     {
-        return $this->mobile;
+        return $this->lastName;
     }
 
     /**
@@ -689,9 +638,9 @@ class Customer
     /**
      * @return string
      */
-    public function getOrganization()
+    public function getMobile()
     {
-        return $this->organization;
+        return $this->mobile;
     }
 
     /**
@@ -706,11 +655,11 @@ class Customer
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getPaymentType()
+    public function getOrganization()
     {
-        return $this->paymentType;
+        return $this->organization;
     }
 
     /**
@@ -725,30 +674,11 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getPaymentMethod()
+    public function getPaymentType()
     {
-        return $this->paymentMethod;
-    }
-
-    /**
-     * @param string $paymentMethod
-     *
-     * @return Customer
-     */
-    public function setPaymentMethod($paymentMethod)
-    {
-        $this->paymentMethod = $paymentMethod;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
+        return $this->paymentType;
     }
 
     /**
@@ -765,9 +695,9 @@ class Customer
     /**
      * @return string
      */
-    public function getPhone2()
+    public function getPhone()
     {
-        return $this->phone2;
+        return $this->phone;
     }
 
     /**
@@ -784,9 +714,9 @@ class Customer
     /**
      * @return string
      */
-    public function getPosition()
+    public function getPhone2()
     {
-        return $this->position;
+        return $this->phone2;
     }
 
     /**
@@ -803,9 +733,9 @@ class Customer
     /**
      * @return string
      */
-    public function getSalutation()
+    public function getPosition()
     {
-        return $this->salutation;
+        return $this->position;
     }
 
     /**
@@ -820,11 +750,11 @@ class Customer
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function getShowPaymentNotice()
+    public function getSalutation()
     {
-        return $this->showPaymentNotice;
+        return $this->salutation;
     }
 
     /**
@@ -839,11 +769,11 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return boolean
      */
-    public function getVatId()
+    public function getShowPaymentNotice()
     {
-        return $this->vatId;
+        return $this->showPaymentNotice;
     }
 
     /**
@@ -860,9 +790,9 @@ class Customer
     /**
      * @return string
      */
-    public function getZipcode()
+    public function getVatId()
     {
-        return $this->zipcode;
+        return $this->vatId;
     }
 
     /**
@@ -874,6 +804,14 @@ class Customer
     {
         $this->zipcode = $zipcode;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getZipcode()
+    {
+        return $this->zipcode;
     }
 
     /**
@@ -897,14 +835,6 @@ class Customer
     }
 
     /**
-     * @return string
-     */
-    public function getDashboardUrl()
-    {
-        return $this->dashboardUrl;
-    }
-
-    /**
      * @param string $dashboardUrl
      *
      * @return Customer
@@ -918,9 +848,9 @@ class Customer
     /**
      * @return string
      */
-    public function getChangedataUrl()
+    public function getDashboardUrl()
     {
-        return $this->changedataUrl;
+        return $this->dashboardUrl;
     }
 
     /**
@@ -932,5 +862,13 @@ class Customer
     {
         $this->changedataUrl = $changedataUrl;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChangedataUrl()
+    {
+        return $this->changedataUrl;
     }
 }
