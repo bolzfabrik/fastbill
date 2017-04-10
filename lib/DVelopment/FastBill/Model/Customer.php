@@ -288,6 +288,19 @@ class Customer
     private $changedataUrl;
 
     /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("AFFILIATE")
+     */
+    private $affiliate;
+
+    public function setAffiliate($affiliate) {
+        $this->$affiliate = $affiliate;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getAccountReceivable()
@@ -934,3 +947,4 @@ class Customer
         return $this;
     }
 }
+
