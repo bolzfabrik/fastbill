@@ -296,7 +296,7 @@ class Customer
     private $affiliate;
 
     public function setAffiliate($affiliate) {
-        $this->$affiliate = $affiliate;
+        $this->affiliate = $affiliate;
         return $this;
     }
 
